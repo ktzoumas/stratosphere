@@ -130,8 +130,22 @@ public class AggregateOperator<IN> extends SingleInputOperator<IN, IN, Aggregate
 
 		return this;
 	}
-	
-	@SuppressWarnings("unchecked")
+
+
+	public AggregateOperator<IN> andSum (int field) {
+		return this.and(Aggregations.SUM, field);
+	}
+
+	public AggregateOperator<IN> andMin (int field) {
+		return this.and(Aggregations.MIN, field);
+	}
+
+	public AggregateOperator<IN> andMax (int field) {
+		return this.and(Aggregations.MAX, field);
+	}
+
+
+		@SuppressWarnings("unchecked")
 	@Override
 	protected eu.stratosphere.api.common.operators.base.GroupReduceOperatorBase<IN, IN, GenericGroupReduce<IN, IN>> translateToDataFlow(Operator<IN> input) {
 		
